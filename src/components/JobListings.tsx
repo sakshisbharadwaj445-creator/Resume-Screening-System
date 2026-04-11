@@ -92,12 +92,15 @@ interface JobListingsProps {
 }
 
 const JobListings = ({ onSelectJob, selectedJobId }: JobListingsProps) => (
-  <section id="jobs" className="py-16">
+  <section id="jobs" className="py-20">
     <div className="container mx-auto px-4">
-      <h2 className="text-2xl md:text-3xl font-bold text-center mb-3">Open Positions</h2>
-      <p className="text-muted-foreground text-center mb-10 max-w-xl mx-auto">
-        Select a role you're interested in, then submit your resume to see how well you match.
-      </p>
+      <div className="text-center mb-12">
+        <span className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary mb-3">Careers</span>
+        <h2 className="text-2xl md:text-3xl font-bold">Open Positions</h2>
+        <p className="text-sm text-muted-foreground mt-2 max-w-lg mx-auto">
+          Select a role you're interested in, then submit your resume to see how well you match.
+        </p>
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
         {jobListings.map((job) => {
@@ -106,20 +109,23 @@ const JobListings = ({ onSelectJob, selectedJobId }: JobListingsProps) => (
             <button
               key={job.id}
               onClick={() => onSelectJob(job)}
-              className={`text-left rounded-xl p-5 border transition-all duration-200 cursor-pointer group ${
+              className={`text-left rounded-2xl p-6 border transition-all duration-200 cursor-pointer group ${
                 isSelected
-                  ? "border-primary bg-primary/5 shadow-[var(--shadow-elevated)] ring-2 ring-primary/20"
-                  : "border-border/50 bg-card shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-elevated)] hover:border-primary/30"
+                  ? "border-primary bg-primary/[0.04] shadow-[var(--shadow-elevated)] ring-2 ring-primary/20"
+                  : "border-border/50 bg-card shadow-sm hover:shadow-[var(--shadow-elevated)] hover:border-primary/30"
               }`}
             >
-              <div className={`flex h-10 w-10 items-center justify-center rounded-lg mb-3 ${
-                isSelected ? "bg-primary/20" : "bg-primary/10 group-hover:bg-primary/15"
+              <div className={`flex h-11 w-11 items-center justify-center rounded-xl mb-4 transition-colors ${
+                isSelected ? "bg-primary text-primary-foreground" : "bg-primary/10 group-hover:bg-primary/15 text-primary"
               }`}>
-                <job.icon className="h-5 w-5 text-primary" />
+                <job.icon className="h-5 w-5" />
               </div>
               <h3 className="font-semibold text-sm mb-1">{job.title}</h3>
-              <p className="text-xs text-muted-foreground mb-2">{job.department} · {job.type}</p>
-              <p className="text-xs text-muted-foreground line-clamp-2">{job.description}</p>
+              <p className="text-[11px] text-muted-foreground mb-2.5 font-medium">{job.department} · {job.type}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{job.description}</p>
+              <span className={`inline-block mt-3 text-xs font-semibold ${isSelected ? "text-primary" : "text-muted-foreground group-hover:text-primary"} transition-colors`}>
+                {isSelected ? "✓ Selected" : "Select Role →"}
+              </span>
             </button>
           );
         })}
