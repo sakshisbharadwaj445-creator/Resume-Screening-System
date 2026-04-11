@@ -9,9 +9,9 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { resumeText, jobTitle, jobDescription } = await req.json();
+    const { resumeText, resumeBase64, jobTitle, jobDescription } = await req.json();
 
-    if (!resumeText || !jobTitle || !jobDescription) {
+    if ((!resumeText && !resumeBase64) || !jobTitle || !jobDescription) {
       return new Response(JSON.stringify({ error: "Missing required fields" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -21,6 +21,59 @@ serve(async (req) => {
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
+    // Step 1: If PDF, extract text using Gemini vision
+    let finalResumeText = resumeText || "";
+
+    if (resumeBase64) {
+      console.log("Extracting text from PDF using Gemini vision...");
+      const extractResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${LOVABLE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "google/gemini-2.5-flash",
+          messages: [
+            {
+              role: "user",
+              content: [
+                { type: "text", text: "Extract ALL text from this PDF resume document. Return ONLY the raw text content, preserving the structure. Do not add any commentary or formatting." },
+                {
+                  type: "image_url",
+                  image_url: {
+                    url: `data:application/pdf;base64,${resumeBase64}`,
+                  },
+                },
+              ],
+            },
+          ],
+        }),
+      });
+
+      if (!extractResponse.ok) {
+        const t = await extractResponse.text();
+        console.error("PDF extraction error:", extractResponse.status, t);
+        throw new Error("Failed to read PDF. Please try uploading a .txt file instead.");
+      }
+
+      const extractData = await extractResponse.json();
+      finalResumeText = extractData.choices?.[0]?.message?.content || "";
+      console.log("Extracted text length:", finalResumeText.length);
+
+      if (!finalResumeText || finalResumeText.length < 20) {
+        throw new Error("Could not extract readable text from PDF. Please try a .txt file.");
+      }
+    }
+
+    if (!finalResumeText.trim()) {
+      return new Response(JSON.stringify({ error: "No readable text found in resume" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Step 2: Analyze the resume against job requirements
     const systemPrompt = `You are an EXTREMELY STRICT resume screening system. You perform LITERAL, EXACT keyword matching ONLY. You are NOT generous. You are a machine that checks if exact words exist.
 
 ABSOLUTE RULES - FOLLOW THESE WITHOUT EXCEPTION:
@@ -54,7 +107,7 @@ Return this exact JSON structure:
 ${jobDescription}
 
 **Candidate Resume:**
-${resumeText}
+${finalResumeText}
 
 Analyze this resume against the job requirements and return the JSON result.`;
 
@@ -94,7 +147,6 @@ Analyze this resume against the job requirements and return the JSON result.`;
 
     if (!content) throw new Error("No content from AI");
 
-    // Parse the JSON from AI response, handling possible markdown wrapping
     let parsed;
     try {
       const cleaned = content.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
