@@ -19,7 +19,7 @@ export const jobListings: JobListing[] = [
     department: "Engineering",
     type: "Full-time",
     description: "Build responsive, high-performance web interfaces using modern frameworks. Collaborate with designers and backend engineers to deliver seamless user experiences.",
-    requirements: "Proficiency in React, TypeScript, HTML5, CSS3, Tailwind CSS. Experience with REST APIs, Git, responsive design, and performance optimization. Knowledge of testing frameworks like Jest or Vitest is a plus.",
+    requirements: "MANDATORY: Minimum 6 months internship or work experience in frontend development. Must have a certificate or verifiable project in React.js. Core skills required: React, JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS, Git. Must demonstrate experience with REST API integration, responsive design, and at least one testing framework (Jest, Vitest, or Cypress). Portfolio or GitHub with live projects is required.",
   },
   {
     id: "backend",
@@ -28,7 +28,7 @@ export const jobListings: JobListing[] = [
     department: "Engineering",
     type: "Full-time",
     description: "Design and maintain scalable server-side applications, APIs, and database architectures. Ensure high availability, security, and data integrity across services.",
-    requirements: "Strong skills in Node.js, Python, or Java. Experience with PostgreSQL, MongoDB, REST/GraphQL APIs, Docker, and cloud platforms (AWS/GCP). Understanding of microservices, authentication, and CI/CD pipelines.",
+    requirements: "MANDATORY: Minimum 6 months internship or professional experience in backend development. Must hold a certification or have completed a verifiable backend project. Core skills required: Node.js or Python or Java, PostgreSQL, MongoDB, REST APIs, Docker, Git. Must have hands-on experience with authentication systems (JWT/OAuth), CI/CD pipelines, and at least one cloud platform (AWS, GCP, or Azure). Knowledge of microservices architecture is required.",
   },
   {
     id: "uiux",
@@ -37,7 +37,7 @@ export const jobListings: JobListing[] = [
     department: "Design",
     type: "Full-time",
     description: "Create intuitive, visually appealing user interfaces and design systems. Conduct user research, build wireframes, prototypes, and deliver pixel-perfect designs.",
-    requirements: "Proficiency in Figma, Adobe XD, or Sketch. Strong understanding of design principles, typography, color theory, accessibility standards, and user-centered design. Experience with design systems and responsive layouts.",
+    requirements: "MANDATORY: Minimum 6 months internship or freelance experience in UI/UX design. Must have a design portfolio with at least 3 completed projects. Core skills required: Figma, Adobe XD, wireframing, prototyping, user research, usability testing. Must demonstrate knowledge of design systems, accessibility standards (WCAG), typography, color theory, and responsive design. Google UX Design Certificate or equivalent certification preferred.",
   },
   {
     id: "data-analyst",
@@ -46,7 +46,7 @@ export const jobListings: JobListing[] = [
     department: "Analytics",
     type: "Full-time",
     description: "Analyze large datasets to extract meaningful insights, build dashboards, and support data-driven business decisions across teams.",
-    requirements: "Proficiency in SQL, Python (Pandas, NumPy), Excel, and data visualization tools like Tableau or Power BI. Experience with statistical analysis, data cleaning, and reporting. Knowledge of machine learning basics is a plus.",
+    requirements: "MANDATORY: Minimum 6 months internship or project experience in data analysis. Must have completed a certification in data analytics (Google Data Analytics, IBM Data Analyst, or equivalent). Core skills required: SQL, Python (Pandas, NumPy, Matplotlib), Excel (advanced formulas, pivot tables), Tableau or Power BI. Must demonstrate experience with data cleaning, statistical analysis (hypothesis testing, regression), ETL processes, and dashboard creation with real datasets.",
   },
   {
     id: "cybersecurity",
@@ -55,7 +55,7 @@ export const jobListings: JobListing[] = [
     department: "Security",
     type: "Full-time",
     description: "Monitor and protect organizational systems from cyber threats. Conduct vulnerability assessments, implement security protocols, and respond to security incidents.",
-    requirements: "Knowledge of network security, firewalls, IDS/IPS, encryption, and SIEM tools. Experience with penetration testing, vulnerability scanning, and incident response. Certifications like CEH, CompTIA Security+, or CISSP preferred.",
+    requirements: "MANDATORY: Minimum 6 months internship or hands-on experience in cybersecurity. Must hold at least one certification: CEH, CompTIA Security+, CISSP, or equivalent. Core skills required: network security, firewalls, IDS/IPS, SIEM tools (Splunk, QRadar), penetration testing, vulnerability scanning (Nessus, Burp Suite). Must have experience with incident response, encryption protocols, Linux security, and security auditing. Participation in CTF competitions or bug bounty programs is a plus.",
   },
   {
     id: "mobile",
@@ -64,7 +64,7 @@ export const jobListings: JobListing[] = [
     department: "Engineering",
     type: "Full-time",
     description: "Develop and maintain cross-platform mobile applications with smooth performance and excellent user experience on both iOS and Android.",
-    requirements: "Experience with React Native, Flutter, or Swift/Kotlin. Understanding of mobile UI/UX patterns, app store deployment, push notifications, and offline storage. Familiarity with REST APIs and mobile testing tools.",
+    requirements: "MANDATORY: Minimum 6 months internship or experience building mobile applications. Must have at least one published app on Google Play Store or Apple App Store, or a verifiable mobile project on GitHub. Core skills required: React Native or Flutter or Swift or Kotlin, mobile UI/UX patterns, REST API integration, push notifications, local storage (SQLite/AsyncStorage). Must have experience with app store deployment process, mobile testing (Detox, XCTest), and Git version control.",
   },
   {
     id: "ml-engineer",
@@ -73,7 +73,7 @@ export const jobListings: JobListing[] = [
     department: "AI & Research",
     type: "Full-time",
     description: "Build and deploy machine learning models to solve real-world business problems. Work on data pipelines, model training, and integration with production systems.",
-    requirements: "Strong Python skills with TensorFlow, PyTorch, or scikit-learn. Experience with NLP, computer vision, or recommendation systems. Knowledge of MLOps, Docker, and cloud ML services (AWS SageMaker, GCP Vertex AI).",
+    requirements: "MANDATORY: Minimum 6 months internship or research experience in machine learning. Must have completed a certification (TensorFlow Developer Certificate, AWS ML Specialty, or equivalent) or published ML project. Core skills required: Python, TensorFlow or PyTorch, scikit-learn, NumPy, Pandas. Must demonstrate hands-on experience with model training, hyperparameter tuning, data preprocessing, and at least one domain (NLP, computer vision, or recommendation systems). Experience with MLOps, Docker, and deploying models to production is required.",
   },
   {
     id: "project-manager",
@@ -82,7 +82,7 @@ export const jobListings: JobListing[] = [
     department: "Operations",
     type: "Full-time",
     description: "Lead cross-functional teams to deliver projects on time and within scope. Manage timelines, resources, risks, and stakeholder communication.",
-    requirements: "Experience with Agile/Scrum methodologies, project management tools (Jira, Trello, Asana). Strong communication, leadership, and organizational skills. PMP or Scrum Master certification is a plus.",
+    requirements: "MANDATORY: Minimum 1 year of experience managing projects or teams (internship counts). Must hold PMP, Scrum Master (CSM), or equivalent certification. Core skills required: Agile methodology, Scrum framework, Jira, Confluence, risk management, stakeholder communication. Must demonstrate experience leading a team of 3+ people, managing project timelines with Gantt charts, conducting sprint planning, and delivering at least 2 completed projects on time.",
   },
 ];
 
