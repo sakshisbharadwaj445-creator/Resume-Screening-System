@@ -1,14 +1,13 @@
-import { FileSearch, Target, Zap } from "lucide-react";
+import { Building2, Users, Shield } from "lucide-react";
 
 const features = [
-  { icon: FileSearch, title: "Smart Parsing", desc: "AI extracts skills & experience from your resume" },
-  { icon: Target, title: "Job Matching", desc: "Compares your profile against job requirements" },
-  { icon: Zap, title: "Instant Results", desc: "Get match percentage & suitability in seconds" },
+  { icon: Building2, title: "Industry Leader", desc: "TalentBridge connects top talent with the right opportunities" },
+  { icon: Users, title: "Smart Matching", desc: "AI-powered resume screening for perfect job-candidate fit" },
+  { icon: Shield, title: "Fair & Unbiased", desc: "Objective skill-based evaluation for every applicant" },
 ];
 
 const HeroSection = () => (
   <section className="relative overflow-hidden py-16 lg:py-24">
-    {/* Background decoration */}
     <div className="absolute inset-0 -z-10">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-primary/5 blur-3xl" />
       <div className="absolute bottom-0 right-0 h-[300px] w-[400px] rounded-full bg-accent/5 blur-3xl" />
@@ -17,14 +16,14 @@ const HeroSection = () => (
     <div className="container mx-auto px-4 text-center">
       <div className="animate-slide-up">
         <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-6">
-          AI-Powered Resume Analysis
+          TalentBridge Technologies
         </span>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-          Resume Screening{" "}
-          <span className="gradient-text">System</span>
+          Find Your Perfect{" "}
+          <span className="gradient-text">Career Match</span>
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
-          Upload your resume, provide a job description, and instantly discover how well your skills match the role.
+          Browse our open positions, submit your resume, and instantly discover how well your skills align with the role. Let AI do the screening.
         </p>
       </div>
 
