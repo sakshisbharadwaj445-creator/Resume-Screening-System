@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import type { JobListing } from "./JobListings";
 
 interface ResumeUploadFormProps {
-  onAnalyze: (data: { resumeText: string; jobTitle: string; jobDescription: string }) => void;
+  onAnalyze: (data: { resumeText?: string; resumeBase64?: string; resumeFileName?: string; jobTitle: string; jobDescription: string }) => void;
   isLoading: boolean;
   selectedJob: JobListing | null;
 }
