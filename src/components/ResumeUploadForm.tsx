@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import type { JobListing } from "./JobListings";
 
 interface ResumeUploadFormProps {
-  onAnalyze: (data: { resumeText: string; jobTitle: string; jobDescription: string }) => void;
+  onAnalyze: (data: { resumeText?: string; resumeBase64?: string; resumeFileName?: string; jobTitle: string; jobDescription: string }) => void;
   isLoading: boolean;
   selectedJob: JobListing | null;
 }
@@ -35,17 +35,45 @@ const ResumeUploadForm = ({ onAnalyze, isLoading, selectedJob }: ResumeUploadFor
     let resumeText = "";
     if (inputMode === "upload") {
       if (!file) { toast.error("Please upload a resume"); return; }
-      resumeText = await file.text();
+      
+      const isPdf = file.name.toLowerCase().endsWith('.pdf');
+      
+      if (isPdf) {
+        // Send PDF as base64 for AI-powered extraction
+        const arrayBuffer = await file.arrayBuffer();
+        const bytes = new Uint8Array(arrayBuffer);
+        let binary = '';
+        for (let i = 0; i < bytes.length; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+        const base64 = btoa(binary);
+        
+        onAnalyze({
+          resumeBase64: base64,
+          resumeFileName: file.name,
+          jobTitle: selectedJob.title,
+          jobDescription: selectedJob.requirements,
+        });
+        return;
+      } else {
+        // Text files can be read directly
+        const text = await file.text();
+        if (!text.trim()) { toast.error("File appears to be empty"); return; }
+        onAnalyze({
+          resumeText: text.trim(),
+          jobTitle: selectedJob.title,
+          jobDescription: selectedJob.requirements,
+        });
+        return;
+      }
     } else {
       if (!manualText.trim()) { toast.error("Please enter your skills and expertise"); return; }
-      resumeText = manualText.trim();
+      onAnalyze({
+        resumeText: manualText.trim(),
+        jobTitle: selectedJob.title,
+        jobDescription: selectedJob.requirements,
+      });
     }
-
-    onAnalyze({
-      resumeText,
-      jobTitle: selectedJob.title,
-      jobDescription: selectedJob.requirements,
-    });
   };
 
   if (!selectedJob) return null;

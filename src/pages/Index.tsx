@@ -19,7 +19,7 @@ const Index = () => {
     setTimeout(() => formRef.current?.scrollIntoView({ behavior: "smooth" }), 100);
   };
 
-  const handleAnalyze = async (data: { resumeText: string; jobTitle: string; jobDescription: string }) => {
+  const handleAnalyze = async (data: { resumeText?: string; resumeBase64?: string; resumeFileName?: string; jobTitle: string; jobDescription: string }) => {
     setIsLoading(true);
     setResult(null);
     try {
