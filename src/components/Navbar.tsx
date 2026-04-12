@@ -30,10 +30,12 @@ const Navbar = () => {
             <span className="block text-[10px] font-medium tracking-widest uppercase text-muted-foreground">Technologies</span>
           </div>
         </a>
-        <nav className="hidden md:flex items-center gap-8">
-          <a href="#jobs" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Open Positions</a>
-          <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
-          <a href="#apply" className="text-sm font-medium text-primary-foreground bg-primary hover:bg-primary/90 px-4 py-2 rounded-lg transition-colors">Apply Now</a>
+        <div className="flex items-center gap-4">
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="#jobs" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Open Positions</a>
+            <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
+            <a href="#apply" className="text-sm font-medium text-primary-foreground bg-primary hover:bg-primary/90 px-4 py-2 rounded-lg transition-colors">Apply Now</a>
+          </nav>
           <button
             onClick={() => setDark((d) => !d)}
             className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground hover:text-foreground transition-colors"
@@ -41,7 +43,7 @@ const Navbar = () => {
           >
             {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
-        </nav>
+        </div>
       </div>
     </header>
   );
