@@ -1,4 +1,6 @@
-import { CheckCircle2, XCircle, TrendingUp, Award, AlertTriangle, Lightbulb } from "lucide-react";
+import { CheckCircle2, XCircle, TrendingUp, Award, AlertTriangle, Lightbulb, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 export interface AnalysisResult {
   matchPercentage: number;
@@ -11,10 +13,12 @@ export interface AnalysisResult {
 
 interface ResultsDisplayProps {
   result: AnalysisResult;
+  jobTitle?: string;
 }
 
-const ResultsDisplay = ({ result }: ResultsDisplayProps) => {
+const ResultsDisplay = ({ result, jobTitle }: ResultsDisplayProps) => {
   const { matchPercentage, suitable, matchedSkills, missingSkills, summary, suggestions } = result;
+  const navigate = useNavigate();
 
   const getMatchColor = () => {
     if (matchPercentage >= 75) return "text-success";
@@ -143,6 +147,20 @@ const ResultsDisplay = ({ result }: ResultsDisplayProps) => {
                 </li>
               ))}
             </ul>
+          </div>
+        )}
+
+        {/* Next Step Button for 80%+ candidates */}
+        {matchPercentage >= 80 && (
+          <div className="text-center pt-4">
+            <Button
+              size="lg"
+              className="gap-2 text-base px-8"
+              onClick={() => navigate("/register-screening", { state: { jobTitle } })}
+            >
+              Next Step <ArrowRight className="h-4 w-4" />
+            </Button>
+            <p className="text-xs text-muted-foreground mt-2">You're eligible to register for the screening test</p>
           </div>
         )}
       </div>
