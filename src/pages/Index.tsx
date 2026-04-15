@@ -57,7 +57,7 @@ const Index = () => {
       <div ref={resultsRef}>
         {result && (
           <div className="border-t border-border/40">
-            <ResultsDisplay result={result} />
+            <ResultsDisplay result={result} jobTitle={selectedJob?.title} />
           </div>
         )}
       </div>
