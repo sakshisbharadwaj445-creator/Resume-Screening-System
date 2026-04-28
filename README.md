@@ -1,5 +1,5 @@
-# Welcome to Resume Screening System Project
-# Resume Screening System 📄🤖
+# Welcome 
+# Resume Screening System
 
 A web-based Resume Screening System that uses **data mining concepts** to analyze and filter resumes efficiently. This application helps automate the initial recruitment process by identifying relevant candidates based on predefined criteria.
 
@@ -48,7 +48,6 @@ Resume-Screening-System/
 ⚙️ Installation & Setup
 
 1. Clone the repository:
-
 ```bash
 git clone https://github.com/sakshisbharadwaj445-creator/Resume-Screening-System.git
 ```
